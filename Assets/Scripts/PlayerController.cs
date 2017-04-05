@@ -20,20 +20,6 @@ public class PlayerController : MonoBehaviour
 		move ();
 	}
 
-	//	private void move ()
-	//	{
-	//		float moveHorizontal = Input.GetAxis ("Horizontal");
-	//		float moveVertical = Input.GetAxis ("Vertical");
-	//		int absHorizontal = (moveHorizontal > 0 ? 1 : (moveHorizontal < 0 ? -1 : 0));
-	//		int absVertical = (moveVertical > 0 ? 1 : (moveVertical < 0 ? -1 : 0));
-	//
-	//		if (moveHorizontal != 0 || moveVertical != 0)
-	//			Debug.Log (moveHorizontal + " " + moveVertical);
-	//
-	//		Vector2 movement = new Vector2 (absHorizontal, absVertical);
-	//		rb2d.velocity = movement * speed;
-	//	}
-
 	private void move ()
 	{
 		int moveHor = 0, moveVer = 0;
