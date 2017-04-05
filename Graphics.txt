@@ -1,0 +1,10 @@
+Sprites
+Inventory:
+	Phaser
+	Clearance code
+Structures:
+	Computer panel
+	Chairs
+	Bed
+	Closet
+Font

@@ -1,0 +1,6 @@
+Level 1:
+	find the phaser
+	go to officer's room, kill the aliens
+	find clearance code
+	go to communication, enter code
+	call for help - they will activate the turbolift
