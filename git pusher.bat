@@ -9,7 +9,7 @@ set /p msg="Enter commit message: "
 
 :afterPrompt
 git add *
-git commit -m "%msg"
+git commit -m "%msg%"
 git push
 
 pause
