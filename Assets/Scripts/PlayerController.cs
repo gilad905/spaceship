@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
 
 		animator.SetInteger ("moveHor", moveHor);
 		animator.SetInteger ("moveVer", moveVer);
-		Debug.Log (startScale.x * (moveHor > 0 ? -1 : 1));
-		transform.localScale = new Vector3(startScale.x * (moveHor > 0 ? 1 : -1), startScale.y, startScale.z);
+		if (moveHor != 0)
+			transform.localScale = new Vector3 (startScale.x * moveHor, startScale.y, startScale.z);
 	}
 }
