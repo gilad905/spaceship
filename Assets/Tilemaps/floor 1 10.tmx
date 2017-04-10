@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="24" tileheight="24" nextobjectid="1">
+ <tileset firstgid="1" name="oryx_16bit_scifi_world" tilewidth="24" tileheight="24" tilecount="1435" columns="35">
+  <image source="../../../Tiles/Oryx Sci Fi/world.png" trans="000000" width="840" height="984"/>
+  <tile id="8">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="24" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="9">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="20" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="10">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="20" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="11">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="20" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="13">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="24" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="14">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="20" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="15">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="20" height="24"/>
+    <object id="2" x="0" y="4" width="24" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="20" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="24" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="19">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="20" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="57">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="24" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="59">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="24" height="20"/>
+   </objectgroup>
+  </tile>
+  <tile id="97">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="4" width="24" height="20"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="1436" name="oryx_16bit_scifi_world my extras" tilewidth="24" tileheight="24" tilecount="7" columns="7">
+  <image source="../../../Tiles/Oryx Sci Fi/world my extras.png" width="168" height="24"/>
+ </tileset>
+ <tileset firstgid="1443" name="oryx_16bit_scifi_items" tilewidth="16" tileheight="16" tilecount="198" columns="22">
+  <tileoffset x="4" y="-6"/>
+  <image source="../../../Tiles/Oryx Sci Fi/items.png" trans="000000" width="352" height="144"/>
+ </tileset>
+ <tileset firstgid="1641" name="oryx_16bit_scifi_world_decals" tilewidth="24" tileheight="24" tilecount="110" columns="10">
+  <image source="../../../Tiles/Oryx Sci Fi/world_decals.png" trans="000000" width="240" height="264"/>
+ </tileset>
+ <layer name="space" width="60" height="50" visible="0">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAOBvLuAAAQ==
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1U0OQDAQQOHBnq3jOwAu4lIsJG1C/Ksx875kEguLvrRUBAAAANAp+3oBidFrG722eey9M39zZ81eegtZ7nMr0gzTQ5WH0ehK79q57qLe2lkv+5vGW/9Yrft7pPOp3n7ujSe1lL0a7uattRTRO2et3Ucaeo/Quldvic81vXZ7975JKyy17CnzMB546wUAAAAAQJMRe6sRDQ==
+  </data>
+ </layer>
+ <layer name="items" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1UEOgjAQheEJxOMRr8AxDBwDt0q3LCWiN/BcjoGFC7op1k7K/yWzakLnNUwrAgAAANhUpW4AAICNeMvyNRRSp+7hny4HcZp5N64G856Waj3rRwn/Jy3mjak3mPccsR/N6uJ9PcxzJe9d66Y1xtiw1DP4LqN0jp1vrZH5DkC+OmP30i985nqS9bl+ZJT3lboBAAAAAACADL0BHjMYxA==
+  </data>
+ </layer>
+ <layer name="walls" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztl2EKgzAMRv3rNjZlO83YaXb/Q6yFBkpWWFudpvU9CKGoJZ/xs+0wAAAAAADY46xy71xU7h309s1R9U4uni7GKOvQ1yXfti15EWv0taVvQ2q9DumepuLu4uXiFJ6dwnhMZGu9r/Hvv+7dAvTmP7P2vUsRT8b/03cIGc8VdVnVa0GDNb1yTjiK3p78W6JX76+0z+O11KperyGuOxWPgvnid5O7N5m/p9kV0ZBz3re2ltZQ4l/0toXfj4i/vCf9OSDlQfkHWPNiKbpfrffvF0fTK+uKrFetf68AAAAAAADQPh8lFAzk
+  </data>
+ </layer>
+ <layer name="wall objects" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztzrENACAMA8FMCtl/CigZICJF7iTL7UcAAAAA1dbdfp7ZsjsAhsnuAKBMdgcAAAAAAPDdAZzFAps=
+  </data>
+ </layer>
+ <layer name="shadows" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1TsKgDAMANAsvXS9vJQOOopIG8x7kD3kGwEAAGRwtN0ZADw3btbb4H/0HtaqsF+9XcG37rVV43z80MlsQk6V7xIAAACw1gmXhxj3
+  </data>
+ </layer>
+</map>

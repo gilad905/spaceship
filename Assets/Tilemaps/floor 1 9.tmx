@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="24" tileheight="24" nextobjectid="1">
+ <tileset firstgid="1" name="oryx_16bit_scifi_world" tilewidth="24" tileheight="24" tilecount="1435" columns="35">
+  <image source="../../../Tiles/Oryx Sci Fi/oryx_16bit_scifi_world.png" trans="000000" width="840" height="984"/>
+  <tile id="8">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="9">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="10">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="11">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="13">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="14">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="15">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="16">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="19">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="57">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+  <tile id="97">
+   <objectgroup draworder="index">
+    <object id="1" x="0" y="0" width="24" height="24"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="1436" name="oryx_16bit_scifi_world my extras" tilewidth="24" tileheight="24" tilecount="7" columns="7">
+  <image source="../../../Tiles/Oryx Sci Fi/oryx_16bit_scifi_world my extras.png" width="168" height="24"/>
+ </tileset>
+ <tileset firstgid="1443" name="oryx_16bit_scifi_items" tilewidth="16" tileheight="16" tilecount="198" columns="22">
+  <tileoffset x="4" y="-6"/>
+  <image source="../../../Tiles/Oryx Sci Fi/oryx_16bit_scifi_items.png" trans="000000" width="352" height="144"/>
+ </tileset>
+ <tileset firstgid="1641" name="oryx_16bit_scifi_world_decals" tilewidth="24" tileheight="24" tilecount="110" columns="10">
+  <image source="../../../Tiles/Oryx Sci Fi/oryx_16bit_scifi_world_decals.png" trans="000000" width="240" height="264"/>
+ </tileset>
+ <layer name="space" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAOBvLuAAAQ==
+  </data>
+ </layer>
+ <layer name="ground" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJztl2sOgjAQhFf4pRIe0R+exXAaT+YB1It4KdvIhk2t8hBoS+dLJoVAyE6m2xYiAAAAAAAA/GOvtGnGGMjo7TdzXchCwO+6idVvqXRW2orRlPmcx2LxqsfDfv9RSHOD/eZkz9Smg1KttKN2btTNM3P0Lfsx/avfTekz5xvR9akuiqSVb9mP9Wub13fh9xSZXxf5ck/K9fTSiO8rWk++Q9beNeTbxy//L0zh99H4lfLN75T963pv7qorFe+Y5yuzz+Ve+m0/cu23NOq26dizbll7+eN7pqp5LQ6G8+U+9iWruZD9G5vfrp4M3a8+j/B5Q/ek/g+w9SCvAb714lB0XnnSKvT8uojNL+8rvF+FPl8BAAAAAAAAAITPC3HfHfA=
+  </data>
+ </layer>
+ <layer name="shadows" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt1EsKwCAMBUA3XrpeXrqquCjFUgzNDGQfXj6lAAAAEbS6uwOA586ftVr8j9nD97Ld2FGv4p05wzFbGceS7c7v2E2IKeM/AgAAAPbot/Yc9g==
+  </data>
+ </layer>
+ <layer name="objects" width="60" height="50">
+  <data encoding="base64" compression="zlib">
+   eJzt2FEKgkAQxvGh6HjhDXKPIXUMe0197bGwul4jFYhaD+4uTvr/wSAo7u6nzAqKAAAAADZtp14AAHjYaaWtI5bp8y1zUy4CUZxXy3qtp41UmvlvOM/7C4N5s3cdvlxPPMa2mDem0mDeY8T1aNYq3ujjPAby1loXrWvnvAsx4VqfQbuM+tXHe3ntAZiv3Ni+FELT1zfp93XjPqO8/L8CAAAAAAAI7wmycxnl
+  </data>
+ </layer>
+</map>
