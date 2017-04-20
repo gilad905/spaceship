@@ -87,6 +87,7 @@
 -define:ENABLE_VSTU
 Assets/CameraController.cs
 Assets/Scripts/PlayerController.cs
+Assets/Scripts/SsObject.cs
 Assets/Tiled2Unity/Scripts/Runtime/CircleObject.cs
 Assets/Tiled2Unity/Scripts/Runtime/GroupLayer.cs
 Assets/Tiled2Unity/Scripts/Runtime/ImportBehaviour.cs

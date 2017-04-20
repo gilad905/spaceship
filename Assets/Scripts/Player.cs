@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class Player : MonoBehaviour
 {
 	public float speed;
 
@@ -19,10 +19,10 @@ public class PlayerController : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-		move ();
+		Move ();
 	}
 
-	private void move ()
+	private void Move ()
 	{
 		int moveHor = 0, moveVer = 0;
 		moveHor = (Input.GetKey (KeyCode.RightArrow) ? 1 : (Input.GetKey (KeyCode.LeftArrow) ? -1 : 0));
