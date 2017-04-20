@@ -1,0 +1,33 @@
+ssObject : gameObject {
+	interact() {}
+	bool playerFacing() {}
+}
+
+oDoor : ssObject {
+	interact(gameObject player) {}
+}
+
+ssItem : gameObject {
+	bool isExhausted = false;
+	string Name;
+	// string Description;
+
+	Use() {}
+	Exhaust() {}
+}
+
+ssCreature : gameObject {
+	// ...
+}
+
+ssInventory {
+	List<ssItem> Items;
+
+	addItem(ssItem) {}
+	removeItem(ssItem) {}
+}
+
+ssWindow {
+	string Name;
+	eNum State;
+}

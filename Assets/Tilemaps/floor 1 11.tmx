@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="24" tileheight="24" nextobjectid="14">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="24" tileheight="24" nextobjectid="35">
  <tileset firstgid="1" name="oryx_16bit_scifi_world" tilewidth="24" tileheight="24" tilecount="1435" columns="35">
   <image source="../../../Tiles/Oryx Sci Fi/world.png" trans="000000" width="840" height="984"/>
   <tile id="8">
@@ -92,9 +92,9 @@
    eJzt1U0OQDAQQOHBnq3jOwAu4lIsJG1C/Ksx875kEguLvrRUBAAAANAp+3oBidFrG722eey9M39zZ81eegtZ7nMr0gzTQ5WH0ehK79q57qLe2lkv+5vGW/9Yrft7pPOp3n7ujSe1lL0a7uattRTRO2et3Ucaeo/Quldvic81vXZ7975JKyy17CnzMB546wUAAAAAQJMRe6sRDQ==
   </data>
  </layer>
- <layer name="items" width="60" height="50">
+ <layer name="objects" width="60" height="50">
   <properties>
-   <property name="unity:sortingLayerName" value="Items"/>
+   <property name="unity:sortingLayerName" value="Objects"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJzt1UEOgjAQheEJxOMRr8AxDBwDt0q3LCWiN/BcjoGFC7op1k7K/yWzakLnNUwrAgAAANhUpW4AAICNeMvyNRRSp+7hny4HcZp5N64G856Waj3rRwn/Jy3mjak3mPccsR/N6uJ9PcxzJe9d66Y1xtiw1DP4LqN0jp1vrZH5DkC+OmP30i985nqS9bl+ZJT3lboBAAAAAACADL0BHjMYxA==
@@ -105,12 +105,12 @@
    <property name="unity:sortingLayerName" value="Walls"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztl2EKgzAMRv3rNjZlO83YaXb/Q6yFBkpWWFudpvU9CKGoJZ/xs+0wAAAAAADY46xy71xU7h309s1R9U4uni7GKOvQ1yXfti15EWv0taVvQ2q9DumepuLu4uXiFJ6dwnhMZGu9r/Hvv+7dAvTmP7P2vUsRT8b/03cIGc8VdVnVa0GDNb1yTjiK3p78W6JX76+0z+O11KperyGuOxWPgvnid5O7N5m/p9kV0ZBz3re2ltZQ4l/0toXfj4i/vCf9OSDlQfkHWPNiKbpfrffvF0fTK+uKrFetf68AAAAAAADQPh8lFAzk
+   eJztl2EOgjAMRvmLGoHoaYin8f6HcEvWhNQZGUzstveSpiEy0s/ysa7rAAAAAADscVa5di4q1w5666ZVvaOL2UW/yDr075KHY0veRY6+lvRuSK3XLt7TWNxcPFycwtoxXPeRbK33W/z7q3uPAL3r1+S+dy/ak/57+gwxh5g21GVVrwUN1vTKOaEVvTX5N0WvzFcyMy19Lv4f1JpcNeTCa5C6P80O94TnLf+btbPJ9P6YvyIa1pz3re2lW0jxL3rLws8j4i/vSX8OiHlQvgHWvJiK7lfp/ftGa3plX5H9qvT3FQAAAAAAAMrnBSLIDOQ=
   </data>
  </layer>
- <layer name="wall items" width="60" height="50">
+ <layer name="wall objects" width="60" height="50">
   <properties>
-   <property name="unity:sortingLayerName" value="Wall items"/>
+   <property name="unity:sortingLayerName" value="Wall objects"/>
   </properties>
   <data encoding="base64" compression="zlib">
    eJztzrENACAMA0FGNfsvAQUjAClyJ1lufwwAAADghbmX8/SW6gBoJtUBwDWpDgAAAAAA4LsFzXACQw==
@@ -124,12 +124,35 @@
    eJzt1TsKwCAMAFCXnLqXqjd06KBjkaKhvgfZQ76lAAAAGVyxOwOA92rMB/+j97DWCft1Rw++NdZWjfPxQx9mE3I6+S4BAAAAazVW6yNN
   </data>
  </layer>
- <objectgroup name="item collisions">
-  <object id="12" x="768" y="696" width="24" height="48">
+ <objectgroup name="object collisions">
+  <object id="28" x="768" y="696" width="24" height="48"/>
+  <object id="34" x="336" y="600" width="24" height="48"/>
+ </objectgroup>
+ <objectgroup name="object objects">
+  <object id="29" x="744" y="648" width="24" height="24">
    <properties>
-    <property name="Name" value="bed"/>
+    <property name="name" value="Closet"/>
    </properties>
   </object>
-  <object id="13" x="336" y="600" width="24" height="48"/>
+  <object id="30" x="336" y="552" width="24" height="24">
+   <properties>
+    <property name="name" value="Closet"/>
+   </properties>
+  </object>
+  <object id="31" x="360" y="552" width="24" height="24">
+   <properties>
+    <property name="name" value="Closet"/>
+   </properties>
+  </object>
+  <object id="32" x="768" y="648" width="24" height="24">
+   <properties>
+    <property name="name" value="Closet"/>
+   </properties>
+  </object>
+  <object id="33" x="384" y="552" width="24" height="24">
+   <properties>
+    <property name="name" value="Closet"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
