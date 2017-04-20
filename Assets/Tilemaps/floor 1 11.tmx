@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="24" tileheight="24" nextobjectid="1">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="24" tileheight="24" nextobjectid="14">
  <tileset firstgid="1" name="oryx_16bit_scifi_world" tilewidth="24" tileheight="24" tilecount="1435" columns="35">
   <image source="../../../Tiles/Oryx Sci Fi/world.png" trans="000000" width="840" height="984"/>
   <tile id="8">
@@ -81,32 +81,55 @@
  </tileset>
  <layer name="space" width="60" height="50">
   <data encoding="base64" compression="zlib">
-   eJztwTEBAAAAwqD1T20MH6AAAAAAAAAAAAAAAOBvLuAAAQ==
+   eJyV1UFu40AQQ9EsfNKR73+GzAATQKAf2cpCiCO1uqtY5Nf1+vr68/e6/l//fr9vf++/L1z3Nffrur2jZ3k/98haLuyd+1+vz9rf2EO96tw31t37Sm1UQ2qXtUnne42p01339vyNv+pJ77b7eWZeuU49tzXv12dtd180PVW39rriPXkqNUtf3vvJ3pSH1EAzaLO6e1I5a/0uH8rPeabyL0+p1tRVvctfbSbSQJort82TOafc88mMlFllbfWgGTY9Ggtbv8kWXalbY5Z0XWxVzcpzy2PbV7lWtsXVNc/mNTG9zVDZbzzRzJQNeaOdKz+0PEojsSDXp1dyz8ZmndP2kF5i3onzjZ3JnKbDmmV6WbN/0q+4pb3FUp2/vNt6k/dTm+xPGZau8ttiz8qTMnC9PmtcHly+bRyRh5TbxpoTN1rO5D/xJPvWnNrcsx9l4jcsb+xd5y19ta75Xf1lXfLVvYecf7JkcSh7bXxoOjUuZX0rw7lOWrR8pIeyxpXv0zehca/xVX1orXzZspR50Dt5L583TbMfvbd8oPfVq/L3tE75Pz3T+JHnygvyUM5CjM71a1bKuuZw4m7re2UjPd+yq3zIvysjYorOabyTn/S+ZtjmKlZIu6Wj9n7Kp1PuW5Yav3R2aqAzpL28KV+v3Cs38nrzYvqpcWzlYNUtLmkfeaPNWzU+4V320Xwt9ik36cv0jViVeohFmpnY17KXOukseUlzPHFJc295U05W5pSL1EN+ln4tq5rz2qcxuOkoP58y2urP8+SBNkvp1nJ/8k7unbNq7JAHVw7Fx+V78Sifi2Piysp/9iYt5a9k1JqrNE0OtJxoFplFMeQ3nleP+jYon8nEJ37KOvM8zWVlc2WjeUosepLbxsPUO2cvZspr0km9qo5cf+G59FfG0sMtS81nelfzbr5Nf7eMJf/EZz1PDyg3ymfze+Oezmw8zOxoLmLHqY/G3MW6NY/VT8ue+pG+qkfzPHlE2W37pK7iavO6eCH+NW+dvhl6t+V0cSAzI/1Vc2qS52vOOaM1k8ZI6dTY1vLT5qMsn7yufU/clPZrz6VHaq17jRfpNc3lxJi2j+bdWJln5n6tf/lAmWl/V4/SUDkTS5SHxlr1KsamZqmJ/hcH09uat3KUtckDzSfZg74RKw+Zz/bu8k/2shiez5unFseXJ5VF+a3Vlnoq++Kp/NHm1jiUGmrGzbOqX7+1Rr5s34Psc+WoaddqX/d0ppiYe2Q/+l9+17Oly8rc4lfqlb2lT1u2dEZqsDzecrD8vua2fNaypfk2pi3W6XuQ98Rh8aBxavnxCcOUE/GtZa3Vk/o0VjYNVbt4tr4B0l11qd/G57VGNWStba/sR/5Prdu8U9+8pzrW72TUej+9pXuqc+VAnmus0zdCdS8d5UnNPdklvbLGtpc00jdBWrV9V4bSt+2dzG96UjnO/ZQPcaX5Vr4Rk5WXn3XfzQa3ew==
   </data>
  </layer>
  <layer name="ground" width="60" height="50">
+  <properties>
+   <property name="unity:sortingLayerName" value="Ground"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt1U0OQDAQQOHBnq3jOwAu4lIsJG1C/Ksx875kEguLvrRUBAAAANAp+3oBidFrG722eey9M39zZ81eegtZ7nMr0gzTQ5WH0ehK79q57qLe2lkv+5vGW/9Yrft7pPOp3n7ujSe1lL0a7uattRTRO2et3Ucaeo/Quldvic81vXZ7975JKyy17CnzMB546wUAAAAAQJMRe6sRDQ==
   </data>
  </layer>
  <layer name="items" width="60" height="50">
+  <properties>
+   <property name="unity:sortingLayerName" value="Items"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt1UEOgjAQheEJxOMRr8AxDBwDt0q3LCWiN/BcjoGFC7op1k7K/yWzakLnNUwrAgAAANhUpW4AAICNeMvyNRRSp+7hny4HcZp5N64G856Waj3rRwn/Jy3mjak3mPccsR/N6uJ9PcxzJe9d66Y1xtiw1DP4LqN0jp1vrZH5DkC+OmP30i985nqS9bl+ZJT3lboBAAAAAACADL0BHjMYxA==
   </data>
  </layer>
  <layer name="walls" width="60" height="50">
+  <properties>
+   <property name="unity:sortingLayerName" value="Walls"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJztl2EKgzAMRv3rNjZlO83YaXb/Q6yFBkpWWFudpvU9CKGoJZ/xs+0wAAAAAADY46xy71xU7h309s1R9U4uni7GKOvQ1yXfti15EWv0taVvQ2q9DumepuLu4uXiFJ6dwnhMZGu9r/Hvv+7dAvTmP7P2vUsRT8b/03cIGc8VdVnVa0GDNb1yTjiK3p78W6JX76+0z+O11KperyGuOxWPgvnid5O7N5m/p9kV0ZBz3re2ltZQ4l/0toXfj4i/vCf9OSDlQfkHWPNiKbpfrffvF0fTK+uKrFetf68AAAAAAADQPh8lFAzk
   </data>
  </layer>
- <layer name="wall objects" width="60" height="50">
+ <layer name="wall items" width="60" height="50">
+  <properties>
+   <property name="unity:sortingLayerName" value="Wall items"/>
+  </properties>
   <data encoding="base64" compression="zlib">
-   eJztzrENACAMA8FMCtl/CigZICJF7iTL7UcAAAAA1dbdfp7ZsjsAhsnuAKBMdgcAAAAAAPDdAZzFAps=
+   eJztzrENACAMA0FGNfsvAQUjAClyJ1lufwwAAADghbmX8/SW6gBoJtUBwDWpDgAAAAAA4LsFzXACQw==
   </data>
  </layer>
  <layer name="shadows" width="60" height="50">
+  <properties>
+   <property name="unity:sortingLayerName" value="Shadows"/>
+  </properties>
   <data encoding="base64" compression="zlib">
    eJzt1TsKwCAMAFCXnLqXqjd06KBjkaKhvgfZQ76lAAAAGVyxOwOA92rMB/+j97DWCft1Rw++NdZWjfPxQx9mE3I6+S4BAAAAazVW6yNN
   </data>
  </layer>
+ <objectgroup name="item collisions">
+  <object id="12" x="768" y="696" width="24" height="48">
+   <properties>
+    <property name="Name" value="bed"/>
+   </properties>
+  </object>
+  <object id="13" x="336" y="600" width="24" height="48"/>
+ </objectgroup>
 </map>
