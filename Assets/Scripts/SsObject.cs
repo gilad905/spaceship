@@ -4,28 +4,24 @@ using UnityEngine;
 
 public class SsObject : MonoBehaviour {
 
-    private void OnControllerColliderHit(ControllerColliderHit hit)
+    void OnTriggerEnter2D(Collider2D other)
     {
         Interact();
     }
 
-    private void Interact()
+    void Interact()
+    {
+        //Debug.Log("Collide!");
+    }
+
+    bool PlayerIsFacing()
     {
         throw new System.NotImplementedException();
     }
 
-    private bool PlayerIsFacing()
-    {
-        throw new System.NotImplementedException();
-    }
-
-    // Use this for initialization
     void Start () {
-		
 	}
 	
-	// Update is called once per frame
 	void Update () {
-		
 	}
 }

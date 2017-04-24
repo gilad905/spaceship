@@ -3,7 +3,7 @@ ssObject : gameObject {
 	bool playerFacing() {}
 }
 
-oDoor : ssObject {
+ssDoor : ssObject {
 	interact(gameObject player) {}
 }
 
@@ -30,4 +30,7 @@ ssInventory {
 ssWindow {
 	string Name;
 	eNum State;
+
+	open() {}
+	close() {}
 }
