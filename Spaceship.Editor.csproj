@@ -125,7 +125,6 @@
   <ItemGroup>
     <Compile Include="Assets\Tiled2Unity\Scripts\Editor\Custom\CustomTiledImporter.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Editor\CustomTiledImporterAttribute.cs" />
-    <Compile Include="Assets\Tiled2Unity\Scripts\Editor\CustomTiledImporter_test.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Editor\ICustomTiledImporter.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Editor\ImportTiled2Unity.Material.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Editor\ImportTiled2Unity.Mesh.cs" />
@@ -141,14 +140,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Tiled2Unity\Imported\_ReadMe.txt" />
-    <None Include="Assets\Tiled2Unity\Imported\floor 1 10.tiled2unity.xml" />
-    <None Include="Assets\Tiled2Unity\Imported\floor 1 11.tiled2unity.xml" />
-    <None Include="Assets\Tiled2Unity\Imported\floor 1 8.tiled2unity.xml" />
-    <None Include="Assets\Tiled2Unity\Imported\floor 1 9.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\floor 1 12.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\License.txt" />
     <None Include="Assets\Tiled2Unity\Materials\_ReadMe.txt" />
     <None Include="Assets\Tiled2Unity\Meshes\_ReadMe.txt" />
     <None Include="Assets\Tiled2Unity\Prefabs\_ReadMe.txt" />
+    <None Include="Assets\Tiled2Unity\Shaders\Tiled2Unity.cginc" />
     <None Include="Assets\Tiled2Unity\Shaders\shaColorKey.shader" />
     <None Include="Assets\Tiled2Unity\Shaders\shaDefault.shader" />
     <None Include="Assets\Tiled2Unity\Shaders\shaDepth.shader" />

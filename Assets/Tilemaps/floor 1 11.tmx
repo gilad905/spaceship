@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="24" tileheight="24" nextobjectid="35">
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="60" height="50" tilewidth="24" tileheight="24" nextobjectid="97">
  <tileset firstgid="1" name="oryx_16bit_scifi_world" tilewidth="24" tileheight="24" tilecount="1435" columns="35">
   <image source="../../../Tiles/Oryx Sci Fi/world.png" trans="000000" width="840" height="984"/>
   <tile id="8">
@@ -79,12 +79,12 @@
  <tileset firstgid="1672" name="oryx_16bit_scifi_world_decals" tilewidth="24" tileheight="24" tilecount="110" columns="10">
   <image source="../../../Tiles/Oryx Sci Fi/world_decals.png" trans="000000" width="240" height="264"/>
  </tileset>
- <layer name="space" width="60" height="50">
+ <layer name="space" width="60" height="50" visible="0">
   <data encoding="base64" compression="zlib">
    eJyV1UFu40AQQ9EsfNKR73+GzAATQKAf2cpCiCO1uqtY5Nf1+vr68/e6/l//fr9vf++/L1z3Nffrur2jZ3k/98haLuyd+1+vz9rf2EO96tw31t37Sm1UQ2qXtUnne42p01339vyNv+pJ77b7eWZeuU49tzXv12dtd180PVW39rriPXkqNUtf3vvJ3pSH1EAzaLO6e1I5a/0uH8rPeabyL0+p1tRVvctfbSbSQJort82TOafc88mMlFllbfWgGTY9Ggtbv8kWXalbY5Z0XWxVzcpzy2PbV7lWtsXVNc/mNTG9zVDZbzzRzJQNeaOdKz+0PEojsSDXp1dyz8ZmndP2kF5i3onzjZ3JnKbDmmV6WbN/0q+4pb3FUp2/vNt6k/dTm+xPGZau8ttiz8qTMnC9PmtcHly+bRyRh5TbxpoTN1rO5D/xJPvWnNrcsx9l4jcsb+xd5y19ta75Xf1lXfLVvYecf7JkcSh7bXxoOjUuZX0rw7lOWrR8pIeyxpXv0zehca/xVX1orXzZspR50Dt5L583TbMfvbd8oPfVq/L3tE75Pz3T+JHnygvyUM5CjM71a1bKuuZw4m7re2UjPd+yq3zIvysjYorOabyTn/S+ZtjmKlZIu6Wj9n7Kp1PuW5Yav3R2aqAzpL28KV+v3Cs38nrzYvqpcWzlYNUtLmkfeaPNWzU+4V320Xwt9ik36cv0jViVeohFmpnY17KXOukseUlzPHFJc295U05W5pSL1EN+ln4tq5rz2qcxuOkoP58y2urP8+SBNkvp1nJ/8k7unbNq7JAHVw7Fx+V78Sifi2Piysp/9iYt5a9k1JqrNE0OtJxoFplFMeQ3nleP+jYon8nEJ37KOvM8zWVlc2WjeUosepLbxsPUO2cvZspr0km9qo5cf+G59FfG0sMtS81nelfzbr5Nf7eMJf/EZz1PDyg3ymfze+Oezmw8zOxoLmLHqY/G3MW6NY/VT8ue+pG+qkfzPHlE2W37pK7iavO6eCH+NW+dvhl6t+V0cSAzI/1Vc2qS52vOOaM1k8ZI6dTY1vLT5qMsn7yufU/clPZrz6VHaq17jRfpNc3lxJi2j+bdWJln5n6tf/lAmWl/V4/SUDkTS5SHxlr1KsamZqmJ/hcH09uat3KUtckDzSfZg74RKw+Zz/bu8k/2shiez5unFseXJ5VF+a3Vlnoq++Kp/NHm1jiUGmrGzbOqX7+1Rr5s34Psc+WoaddqX/d0ppiYe2Q/+l9+17Oly8rc4lfqlb2lT1u2dEZqsDzecrD8vua2fNaypfk2pi3W6XuQ98Rh8aBxavnxCcOUE/GtZa3Vk/o0VjYNVbt4tr4B0l11qd/G57VGNWStba/sR/5Prdu8U9+8pzrW72TUej+9pXuqc+VAnmus0zdCdS8d5UnNPdklvbLGtpc00jdBWrV9V4bSt+2dzG96UjnO/ZQPcaX5Vr4Rk5WXn3XfzQa3ew==
   </data>
  </layer>
- <layer name="ground" width="60" height="50">
+ <layer name="ground" width="60" height="50" visible="0">
   <properties>
    <property name="unity:sortingLayerName" value="Ground"/>
   </properties>
@@ -100,7 +100,7 @@
    eJzt1UEOgjAQheEJxOMRr8AxDBwDt0q3LCWiN/BcjoGFC7op1k7K/yWzakLnNUwrAgAAANhUpW4AAICNeMvyNRRSp+7hny4HcZp5N64G856Waj3rRwn/Jy3mjak3mPccsR/N6uJ9PcxzJe9d66Y1xtiw1DP4LqN0jp1vrZH5DkC+OmP30i985nqS9bl+ZJT3lboBAAAAAACADL0BHjMYxA==
   </data>
  </layer>
- <layer name="walls" width="60" height="50">
+ <layer name="walls" width="60" height="50" visible="0">
   <properties>
    <property name="unity:sortingLayerName" value="Walls"/>
   </properties>
@@ -108,7 +108,7 @@
    eJztl2EOgjAMRvmLGoHoaYin8f6HcEvWhNQZGUzstveSpiEy0s/ysa7rAAAAAADscVa5di4q1w5666ZVvaOL2UW/yDr075KHY0veRY6+lvRuSK3XLt7TWNxcPFycwtoxXPeRbK33W/z7q3uPAL3r1+S+dy/ak/57+gwxh5g21GVVrwUN1vTKOaEVvTX5N0WvzFcyMy19Lv4f1JpcNeTCa5C6P80O94TnLf+btbPJ9P6YvyIa1pz3re2lW0jxL3rLws8j4i/vSX8OiHlQvgHWvJiK7lfp/ftGa3plX5H9qvT3FQAAAAAAAMrnBSLIDOQ=
   </data>
  </layer>
- <layer name="wall objects" width="60" height="50">
+ <layer name="wall objects" width="60" height="50" visible="0">
   <properties>
    <property name="unity:sortingLayerName" value="Wall objects"/>
   </properties>
@@ -116,43 +116,51 @@
    eJztzrENACAMA0FGNfsvAQUjAClyJ1lufwwAAADghbmX8/SW6gBoJtUBwDWpDgAAAAAA4LsFzXACQw==
   </data>
  </layer>
- <layer name="shadows" width="60" height="50">
+ <layer name="shadows" width="60" height="50" visible="0">
   <properties>
    <property name="unity:sortingLayerName" value="Shadows"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJzt1TsKwCAMAFCXnLqXqjd06KBjkaKhvgfZQ76lAAAAGVyxOwOA92rMB/+j97DWCft1Rw++NdZWjfPxQx9mE3I6+S4BAAAAazVW6yNN
+   eJzt1TsKgDAMANAsvf9V6g2ldNBRRNpg3oPsId8IAAAgg6PtzgDguXGz3gb/o/ewVoX96u0KvnWvrRrn44dOZhNyqnyXAAAAgLVOx6wjgw==
   </data>
  </layer>
- <objectgroup name="object collisions">
-  <object id="28" x="768" y="696" width="24" height="48"/>
-  <object id="34" x="336" y="600" width="24" height="48"/>
- </objectgroup>
  <objectgroup name="object objects">
-  <object id="29" x="744" y="648" width="24" height="24">
-   <properties>
-    <property name="name" value="Closet"/>
-   </properties>
-  </object>
-  <object id="30" x="336" y="552" width="24" height="24">
-   <properties>
-    <property name="name" value="Closet"/>
-   </properties>
-  </object>
-  <object id="31" x="360" y="552" width="24" height="24">
-   <properties>
-    <property name="name" value="Closet"/>
-   </properties>
-  </object>
-  <object id="32" x="768" y="648" width="24" height="24">
-   <properties>
-    <property name="name" value="Closet"/>
-   </properties>
-  </object>
-  <object id="33" x="384" y="552" width="24" height="24">
-   <properties>
-    <property name="name" value="Closet"/>
-   </properties>
-  </object>
+  <properties>
+   <property name="unity:sortingLayerName" value="Objects"/>
+  </properties>
+  <object id="56" gid="660" x="336" y="624" width="24" height="24"/>
+  <object id="57" gid="695" x="336" y="648" width="24" height="24"/>
+  <object id="58" gid="659" x="768" y="720" width="24" height="24"/>
+  <object id="59" gid="694" x="768" y="744" width="24" height="24"/>
+  <object id="60" gid="178" x="648" y="744" width="24" height="24"/>
+  <object id="61" gid="177" x="480" y="648" width="24" height="24"/>
+  <object id="62" gid="178" x="504" y="648" width="24" height="24"/>
+  <object id="63" gid="180" x="456" y="648" width="24" height="24"/>
+  <object id="64" gid="180" x="600" y="744" width="24" height="24"/>
+  <object id="65" gid="181" x="624" y="744" width="24" height="24"/>
+  <object id="70" gid="121" x="360" y="576" width="24" height="24"/>
+  <object id="71" gid="123" x="384" y="576" width="24" height="24"/>
+  <object id="72" gid="120" x="336" y="576" width="24" height="24"/>
+  <object id="73" gid="120" x="768" y="672" width="24" height="24"/>
+  <object id="74" gid="122" x="744" y="672" width="24" height="24"/>
+  <object id="75" gid="79" x="576" y="648" width="24" height="24" rotation="90"/>
+  <object id="76" gid="79" x="552" y="576" width="24" height="24" rotation="-90"/>
+  <object id="78" gid="198" x="552" y="768" width="24" height="24"/>
+  <object id="79" gid="77" x="552" y="288" width="24" height="24"/>
+  <object id="80" gid="77" x="912" y="456" width="24" height="24"/>
+  <object id="81" gid="768" x="1008" y="624" width="24" height="24" rotation="90"/>
+  <object id="83" gid="768" x="1080" y="624" width="24" height="24" rotation="90"/>
+  <object id="84" gid="768" x="1032" y="624" width="24" height="24" rotation="90"/>
+  <object id="85" gid="768" x="1056" y="624" width="24" height="24" rotation="90"/>
+  <object id="86" gid="1437" x="888" y="504" width="24" height="24" rotation="90"/>
+  <object id="87" gid="1438" x="888" y="528" width="24" height="24" rotation="90"/>
+  <object id="88" gid="1439" x="888" y="576" width="24" height="24" rotation="90"/>
+  <object id="89" gid="1438" x="888" y="552" width="24" height="24" rotation="90"/>
+  <object id="90" gid="680" x="888" y="480" width="24" height="24" rotation="90"/>
+  <object id="91" gid="680" x="936" y="504" width="24" height="24" rotation="180"/>
+  <object id="92" gid="680" x="936" y="528" width="24" height="24" rotation="180"/>
+  <object id="94" gid="680" x="936" y="552" width="24" height="24" rotation="180"/>
+  <object id="95" gid="680" x="936" y="576" width="24" height="24" rotation="180"/>
+  <object id="96" gid="680" x="912" y="624" width="24" height="24" rotation="-90"/>
  </objectgroup>
 </map>

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class SsObject : MonoBehaviour {
 
+    void OnCollisionEnter2D(Collision2D other)
+    {
+        Interact();
+    }
+
     void OnTriggerEnter2D(Collider2D other)
     {
         Interact();
@@ -11,7 +16,7 @@ public class SsObject : MonoBehaviour {
 
     void Interact()
     {
-        //Debug.Log("Collide!");
+        Debug.Log("Collide!");
     }
 
     bool PlayerIsFacing()
