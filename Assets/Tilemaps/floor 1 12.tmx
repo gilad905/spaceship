@@ -97,7 +97,7 @@
    <property name="unity:sortingLayerName" value="Walls"/>
   </properties>
   <data encoding="base64" compression="zlib">
-   eJztl2EOgjAMRvmLGoHoaYin8f6HcEvWhNQZGUzstveSpiEy0s/ysa7rAAAAAADscVa5di4q1w5666ZVvaOL2UW/yDr075KHY0veRY6+lvRuSK3XLt7TWNxcPFycwtoxXPeRbK33W/z7q3uPAL3r1+S+dy/ak/57+gwxh5g21GVVrwUN1vTKOaEVvTX5N0WvzFcyMy19Lv4f1JpcNeTCa5C6P80O94TnLf+btbPJ9P6YvyIa1pz3re2lW0jxL3rLws8j4i/vSX8OiHlQvgHWvJiK7lfp/ftGa3plX5H9qvT3FQAAAAAAAMrnBSLIDOQ=
+   eJztl2EKgzAMRv3rNqaynUZ2mt3/EGuhAck6ZrVzafsehCDaks/42bbrAAAAAADscVa5di4q1w5666ZVvaOL2UW/yDr0fcnDsSXvIkdfS/o2pNZrF+9pLG4uHi5OYewYrvtIttb7Lf791bNHgN71Y3I/uxftSf8/fYaYQ0wb6rKq14IGa3rlnNCK3pr8m6JX9lfa40v/D2pMrhpy4TVI7Z/2DveE+ZbvZu3eZHqf5q+IhjXnfWtr6RZS/IvesvD7EfGX96Q/B8Q8KP8Aa15MRfer9P59ozW9sq7IelX69woAAAAAAADl8wImVAzk
   </data>
  </layer>
  <layer name="shadows" width="60" height="50">
@@ -154,6 +154,7 @@
   </object>
   <object id="76" gid="79" x="552" y="576" width="24" height="24" rotation="-90">
    <properties>
+    <property name="isLocked" type="bool" value="false"/>
     <property name="name" value="ssDoor"/>
    </properties>
   </object>

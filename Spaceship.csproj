@@ -78,9 +78,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Scripts\CameraController.cs" />
-    <Compile Include="Assets\Scripts\Player.cs" />
-    <Compile Include="Assets\Scripts\SsObject.cs" />
+    <Compile Include="Assets\Scripts\cameraController.cs" />
+    <Compile Include="Assets\Scripts\interactionCollider.cs" />
+    <Compile Include="Assets\Scripts\player.cs" />
+    <Compile Include="Assets\Scripts\ssDoor.cs" />
+    <Compile Include="Assets\Scripts\ssObject.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\CircleObject.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\GroupLayer.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\ImportBehaviour.cs" />
@@ -101,6 +103,7 @@
   <ItemGroup>
     <None Include="Assets\Tiled2Unity\Imported\_ReadMe.txt" />
     <None Include="Assets\Tiled2Unity\Imported\floor 1 12.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\floor 1 13.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\License.txt" />
     <None Include="Assets\Tiled2Unity\Materials\_ReadMe.txt" />
     <None Include="Assets\Tiled2Unity\Meshes\_ReadMe.txt" />

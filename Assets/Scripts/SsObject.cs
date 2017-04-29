@@ -2,31 +2,76 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SsObject : MonoBehaviour {
+public class ssObject : MonoBehaviour
+{
+    protected MeshRenderer meshRenderer;
+    protected BoxCollider2D bc;
+    Material material;
+    bool bcIsTrigger;
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        Interact();
+        collideIfNeeded(other.gameObject, true);
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        Interact();
+        collideIfNeeded(other.gameObject, true);
     }
 
-    void Interact()
+    void OnCollisionExit2D(Collision2D other)
     {
-        Debug.Log("Collide!");
+        collideIfNeeded(other.gameObject, false);
     }
 
-    bool PlayerIsFacing()
+    void OnTriggerExit2D(Collider2D other)
     {
-        throw new System.NotImplementedException();
+        collideIfNeeded(other.gameObject, false);
     }
 
-    void Start () {
-	}
-	
-	void Update () {
-	}
+    void collideIfNeeded(GameObject other, bool isEnter)
+    {
+        if (other.name != "InteractionCollider")
+        {
+            if (isEnter)
+                collideEnter(other);
+            else
+                collideExit(other);
+        }
+    }
+
+    public virtual void collideEnter(GameObject other)
+    {
+    }
+
+    public virtual void collideExit(GameObject other)
+    {
+    }
+
+    public virtual void setProperties(IDictionary<string, string> props)
+    {
+
+    }
+    
+    public void hide()
+    {
+        meshRenderer.material = null;
+        if (!bcIsTrigger)
+            bc.isTrigger = true;
+    }
+
+    public void show()
+    {
+        meshRenderer.material = material;
+        if (!bcIsTrigger)
+            bc.isTrigger = false;
+    }
+
+    void Start()
+    {
+        bc = gameObject.GetComponent<BoxCollider2D>();
+        bcIsTrigger = bc.isTrigger;
+        meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        material = meshRenderer.material;
+    }
 }

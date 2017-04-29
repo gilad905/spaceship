@@ -72,19 +72,20 @@ public class CustomImporter_ssObject : ICustomTiledImporter
 
     void InstantiateTile(GameObject oldObj, IDictionary<string, string> props)
     {
-        string name = OBJ_TYPE;
+        string prefabName = OBJ_TYPE;
         if (props != null && props.ContainsKey("name"))
-            name = props["name"];
+            prefabName = props["name"];
 
-        UnityEngine.Object resource = Resources.Load(name, typeof(GameObject));
+        UnityEngine.Object resource = Resources.Load(prefabName, typeof(GameObject));
         if (resource == null)
             resource = Resources.Load(OBJ_TYPE, typeof(GameObject));
 
         GameObject newObj = PrefabUtility.InstantiatePrefab(resource) as GameObject;
-        newObj.name = SerialName(name);
+        newObj.name = SerialName(prefabName);
         newObj.transform.parent = objects.transform;
 
         GameObject oldchild = oldObj.transform.GetChild(0).GetChild(0).gameObject;
+        newObj.SendMessage("setProperties", props, SendMessageOptions.DontRequireReceiver);
         float objSize = PassMeshComponentes(newObj, oldchild);
         bool isTrigger = !(props == null || !props.ContainsKey("collide") || props["collide"] == "true");
         SetBoxCollider2D(newObj, oldchild, objSize, isTrigger);
