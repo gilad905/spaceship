@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class interactionCollider : MonoBehaviour {
+public class InteractionCollider : MonoBehaviour {
     private void OnTriggerEnter2D(Collider2D other)
     {
         gameObject.transform.parent.SendMessage("OnInteractionEnter", other);

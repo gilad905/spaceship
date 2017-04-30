@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ssObject : MonoBehaviour
+public class SsObject : MonoBehaviour
 {
     protected MeshRenderer meshRenderer;
+    protected MeshFilter meshFilter;
     protected BoxCollider2D bc;
     Material material;
     bool bcIsTrigger;
@@ -34,44 +35,51 @@ public class ssObject : MonoBehaviour
         if (other.name != "InteractionCollider")
         {
             if (isEnter)
-                collideEnter(other);
+                CollideEnter(other);
             else
-                collideExit(other);
+                CollideExit(other);
         }
     }
 
-    public virtual void collideEnter(GameObject other)
+    public virtual void CollideEnter(GameObject other)
     {
     }
 
-    public virtual void collideExit(GameObject other)
+    public virtual void CollideExit(GameObject other)
     {
     }
 
-    public virtual void setProperties(IDictionary<string, string> props)
+    [ExecuteInEditMode]
+    public virtual void SetProperties(IDictionary<string, string> props)
     {
 
     }
     
-    public void hide()
+    public void Hide()
     {
         meshRenderer.material = null;
         if (!bcIsTrigger)
             bc.isTrigger = true;
     }
 
-    public void show()
+    public void Show()
     {
         meshRenderer.material = material;
         if (!bcIsTrigger)
             bc.isTrigger = false;
     }
 
-    void Start()
+    public virtual void Start()
     {
         bc = gameObject.GetComponent<BoxCollider2D>();
         bcIsTrigger = bc.isTrigger;
         meshRenderer = gameObject.GetComponent<MeshRenderer>();
+        meshFilter = gameObject.GetComponent<MeshFilter>();
         material = meshRenderer.material;
+    }
+
+    public virtual void Interact()
+    {
+
     }
 }

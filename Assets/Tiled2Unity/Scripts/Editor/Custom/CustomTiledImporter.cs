@@ -8,9 +8,10 @@ using Tiled2Unity;
 [CustomTiledImporter]
 public class CustomImporter_ssObject : ICustomTiledImporter
 {
-    const string OBJ_TYPE = "ssObject";
+    const string OBJ_TYPE = "SsObject";
     static Dictionary<string, int> names;
     GameObject objects;
+    float objSize = 0.24F;
 
     public CustomImporter_ssObject()
     {
@@ -26,7 +27,7 @@ public class CustomImporter_ssObject : ICustomTiledImporter
 
     public void HandleCustomProperties(GameObject gameObject, IDictionary<string, string> props)
     {
-        InstantiateTile(gameObject, props);
+        instantiateTile(gameObject, props);
         GameObject.DestroyImmediate(gameObject);
     }
 
@@ -35,9 +36,9 @@ public class CustomImporter_ssObject : ICustomTiledImporter
         objects.name = "Objects";
 
         foreach (TileObject tileObj in prefab.GetComponentsInChildren<TileObject>())
-            InstantiateTile(tileObj.gameObject);
+            instantiateTile(tileObj.gameObject);
 
-        SortChildrenByName(objects);
+        sortChildrenByName(objects);
 
         Transform toDestroy = prefab.transform.Find("objects");
         if (toDestroy != null)
@@ -47,7 +48,7 @@ public class CustomImporter_ssObject : ICustomTiledImporter
             GameObject.DestroyImmediate(toDestroy.gameObject);
     }
 
-    private void SortChildrenByName(GameObject parent)
+    void sortChildrenByName(GameObject parent)
     {
         List<Transform> children = new List<Transform>();
         for (int i = 0; i < parent.transform.childCount; i++)
@@ -65,12 +66,12 @@ public class CustomImporter_ssObject : ICustomTiledImporter
     //    children.ForEach(child => GameObject.DestroyImmediate(child));
     //}
 
-    void InstantiateTile(GameObject oldObj)
+    void instantiateTile(GameObject oldObj)
     {
-        InstantiateTile(oldObj, null);
+        instantiateTile(oldObj, null);
     }
 
-    void InstantiateTile(GameObject oldObj, IDictionary<string, string> props)
+    void instantiateTile(GameObject oldObj, IDictionary<string, string> props)
     {
         string prefabName = OBJ_TYPE;
         if (props != null && props.ContainsKey("name"))
@@ -81,18 +82,27 @@ public class CustomImporter_ssObject : ICustomTiledImporter
             resource = Resources.Load(OBJ_TYPE, typeof(GameObject));
 
         GameObject newObj = PrefabUtility.InstantiatePrefab(resource) as GameObject;
-        newObj.name = SerialName(prefabName);
+        newObj.name = serialName(prefabName);
         newObj.transform.parent = objects.transform;
+        passProperties(newObj, prefabName, props);
 
         GameObject oldchild = oldObj.transform.GetChild(0).GetChild(0).gameObject;
-        newObj.SendMessage("setProperties", props, SendMessageOptions.DontRequireReceiver);
-        float objSize = PassMeshComponentes(newObj, oldchild);
+        SpriteRenderer newSR = newObj.GetComponent<SpriteRenderer>();
+
+        passTransformProperties(newObj, oldObj, objSize, (newSR != null));
+        passRenderers(newObj, oldchild, newSR);
         bool isTrigger = !(props == null || !props.ContainsKey("collide") || props["collide"] == "true");
-        SetBoxCollider2D(newObj, oldchild, objSize, isTrigger);
-        PassPositionRotation(newObj, oldObj, objSize);
+        setBoxCollider2D(newObj, oldchild, objSize, isTrigger);
     }
 
-    void SetBoxCollider2D(GameObject newObj, GameObject oldObj, float objSize, bool isTrigger)
+    private void passProperties(GameObject newObj, string prefabName, IDictionary<string, string> props)
+    {
+        SsObject prefabScript = (SsObject)newObj.GetComponent(prefabName);
+        if (prefabScript != null)
+            prefabScript.SetProperties(props);
+    }
+
+    void setBoxCollider2D(GameObject newObj, GameObject oldObj, float objSize, bool isTrigger)
     {
         BoxCollider2D newCollider = newObj.GetComponent<BoxCollider2D>();
         newCollider.size = new Vector2(objSize, objSize);
@@ -100,23 +110,28 @@ public class CustomImporter_ssObject : ICustomTiledImporter
         newCollider.isTrigger = isTrigger;
     }
 
-    float PassMeshComponentes(GameObject newObj, GameObject oldObj)
+    void passRenderers(GameObject newObj, GameObject oldObj, SpriteRenderer newSR)
     {
         MeshRenderer oldMR = oldObj.GetComponent<MeshRenderer>();
-        MeshRenderer newMR = newObj.GetComponent<MeshRenderer>();
-        MeshFilter oldMF = oldObj.GetComponent<MeshFilter>();
-        MeshFilter newMF = newObj.GetComponent<MeshFilter>();
-        newMF.mesh = oldMF.sharedMesh;
-        newMR.sortingLayerID = oldMR.sortingLayerID;
-        newMR.material = oldObj.GetComponent<MeshRenderer>().sharedMaterial;
-        float objSize = oldMF.sharedMesh.bounds.size.x;
-        return objSize;
+        if (newSR == null)
+        {
+            MeshRenderer newMR = newObj.GetComponent<MeshRenderer>();
+            MeshFilter oldMF = oldObj.GetComponent<MeshFilter>();
+            MeshFilter newMF = newObj.GetComponent<MeshFilter>();
+            newMF.mesh = oldMF.sharedMesh;
+            newMR.sortingLayerID = oldMR.sortingLayerID;
+            newMR.material = oldObj.GetComponent<MeshRenderer>().sharedMaterial;
+        }
+        else
+            newSR.sortingLayerID = oldMR.sortingLayerID;
     }
 
-    void PassPositionRotation(GameObject newObj, GameObject oldParent, float objSize)
+    void passTransformProperties(GameObject newObj, GameObject oldParent, float objSize, bool hasSR)
     {
         newObj.transform.rotation = oldParent.transform.rotation;
-        newObj.transform.position = oldParent.transform.position + oldParent.transform.GetChild(0).localPosition + oldParent.transform.GetChild(0).GetChild(0).localPosition;
+        newObj.transform.position = oldParent.transform.position + oldParent.transform.GetChild(0).localPosition;
+        if (!hasSR)
+            newObj.transform.position += oldParent.transform.GetChild(0).GetChild(0).localPosition;
         if (newObj.transform.rotation.z.ToString() == "0.7071068")
             newObj.transform.position += new Vector3(0 - objSize, 0 - objSize);
         else if (newObj.transform.rotation.z.ToString() == "-0.7071068")
@@ -125,13 +140,18 @@ public class CustomImporter_ssObject : ICustomTiledImporter
             newObj.transform.position += new Vector3(0, 0 - (objSize * 2));
     }
 
-    string SerialName(string name)
+    string serialName(string name)
     {
         if (!names.ContainsKey(name))
+        {
             names[name] = 1;
+            return name;
+        }
         else
+        {
             names[name]++;
-        return name + names[name].ToString().PadLeft(2, '0');
+            return name + names[name].ToString().PadLeft(2, '0');
+        }
     }
 
 }

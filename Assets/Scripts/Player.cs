@@ -3,14 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class player : MonoBehaviour
+public class Player : MonoBehaviour
 {
-    public float speed;
+    public float Speed;
 
+    Vector3 startScale;
     Rigidbody2D rb2d = null;
     Animator animator = null;
     BoxCollider2D interactionCollider = null;
-    Vector3 startScale;
+    GameObject interactingWith = null;
 
     void Start()
     {
@@ -18,6 +19,12 @@ public class player : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         interactionCollider = gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>();
         startScale = transform.localScale;
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && interactingWith != null)
+            interactingWith.SendMessage("Interact");
     }
 
     void FixedUpdate()
@@ -33,7 +40,7 @@ public class player : MonoBehaviour
             moveVer = (Input.GetKey(KeyCode.UpArrow) ? 1 : (Input.GetKey(KeyCode.DownArrow) ? -1 : 0));
 
         Vector2 movement = new Vector2(moveHor, moveVer);
-        rb2d.velocity = movement * speed;
+        rb2d.velocity = movement * Speed;
 
         if (moveHor != 0)
             transform.localScale = new Vector3(startScale.x * moveHor, startScale.y, startScale.z);
@@ -54,15 +61,13 @@ public class player : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnInteractionEnter(Collider2D collider)
     {
+        interactingWith = collider.gameObject;
     }
 
-    private void OnInteractionEnter(Collider2D collider)
+    void OnInteractionExit(Collider2D collider)
     {
-    }
-
-    private void OnInteractionExit(Collider2D collider)
-    {
+        interactingWith = null;
     }
 }
