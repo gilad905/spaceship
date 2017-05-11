@@ -130,8 +130,6 @@ public class CustomImporter_ssObject : ICustomTiledImporter
 
     void passTransformProperties(GameObject newObj, GameObject oldParent, float objSize, bool hasSR)
     {
-        Debug.Log("Float comparison unchecked!");
-
         newObj.transform.rotation = oldParent.transform.rotation;
         newObj.transform.position = oldParent.transform.position + oldParent.transform.GetChild(0).localPosition;
         if (!hasSR)

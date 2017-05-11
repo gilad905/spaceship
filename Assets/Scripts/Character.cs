@@ -108,7 +108,7 @@ public class Character : MonoBehaviour
     {
         if (InteractionCollider != null && dirVector.sqrMagnitude != 0)
         {
-            int angle = dirVector.y != 0F ? (int)dirVector.y * 90 : (dirVector.x > 0F ? -180 : 0);
+            int angle = dirVector.x != 0F ? (int)dirVector.x * 90 : (dirVector.y > 0F ? -180 : 0);
             InteractionCollider.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
