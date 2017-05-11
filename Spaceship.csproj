@@ -79,6 +79,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Character.cs" />
+    <Compile Include="Assets\Scripts\Enemy.cs" />
     <Compile Include="Assets\Scripts\InteractionCollider.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="Assets\Scripts\SsDrawer1.cs" />
     <Compile Include="Assets\Scripts\SsItem.cs" />
     <Compile Include="Assets\Scripts\SsObject.cs" />
+    <Compile Include="Assets\Scripts\WalkClasses.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\CircleObject.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\GroupLayer.cs" />
     <Compile Include="Assets\Tiled2Unity\Scripts\Runtime\ImportBehaviour.cs" />
@@ -108,6 +111,7 @@
     <None Include="Assets\Tiled2Unity\Imported\floor 1 12.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\floor 1 13.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\floor 1 14.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\ui.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\License.txt" />
     <None Include="Assets\Tiled2Unity\Materials\_ReadMe.txt" />
     <None Include="Assets\Tiled2Unity\Meshes\_ReadMe.txt" />

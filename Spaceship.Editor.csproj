@@ -143,6 +143,7 @@
     <None Include="Assets\Tiled2Unity\Imported\floor 1 12.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\floor 1 13.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\Imported\floor 1 14.tiled2unity.xml" />
+    <None Include="Assets\Tiled2Unity\Imported\ui.tiled2unity.xml" />
     <None Include="Assets\Tiled2Unity\License.txt" />
     <None Include="Assets\Tiled2Unity\Materials\_ReadMe.txt" />
     <None Include="Assets\Tiled2Unity\Meshes\_ReadMe.txt" />

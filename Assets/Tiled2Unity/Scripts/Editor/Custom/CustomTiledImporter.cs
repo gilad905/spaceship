@@ -8,7 +8,6 @@ using Tiled2Unity;
 [CustomTiledImporter]
 public class CustomImporter_ssObject : ICustomTiledImporter
 {
-    const string OBJ_TYPE = "SsObject";
     static Dictionary<string, int> names;
     GameObject objects;
     float objSize = 0.24F;
@@ -73,13 +72,13 @@ public class CustomImporter_ssObject : ICustomTiledImporter
 
     void instantiateTile(GameObject oldObj, IDictionary<string, string> props)
     {
-        string prefabName = OBJ_TYPE;
+        string prefabName = "SsObject";
         if (props != null && props.ContainsKey("name"))
             prefabName = props["name"];
 
-        UnityEngine.Object resource = Resources.Load(prefabName, typeof(GameObject));
+        UnityEngine.Object resource = Resources.Load("Prefabs/" + prefabName, typeof(GameObject));
         if (resource == null)
-            resource = Resources.Load(OBJ_TYPE, typeof(GameObject));
+            resource = Resources.Load("Prefabs/" + "SsObject", typeof(GameObject));
 
         GameObject newObj = PrefabUtility.InstantiatePrefab(resource) as GameObject;
         newObj.name = serialName(prefabName);
@@ -92,7 +91,7 @@ public class CustomImporter_ssObject : ICustomTiledImporter
         passTransformProperties(newObj, oldObj, objSize, (newSR != null));
         passRenderers(newObj, oldchild, newSR);
         bool isTrigger = !(props == null || !props.ContainsKey("collide") || props["collide"] == "true");
-        setBoxCollider2D(newObj, oldchild, objSize, isTrigger);
+        setBoxCollider2D(newObj, oldchild, objSize, isTrigger, (newSR != null));
     }
 
     private void passProperties(GameObject newObj, string prefabName, IDictionary<string, string> props)
@@ -102,11 +101,14 @@ public class CustomImporter_ssObject : ICustomTiledImporter
             prefabScript.SetProperties(props);
     }
 
-    void setBoxCollider2D(GameObject newObj, GameObject oldObj, float objSize, bool isTrigger)
+    void setBoxCollider2D(GameObject newObj, GameObject oldObj, float objSize, bool isTrigger, bool hasSR)
     {
         BoxCollider2D newCollider = newObj.GetComponent<BoxCollider2D>();
         newCollider.size = new Vector2(objSize, objSize);
-        newCollider.offset = new Vector2(objSize / 2, 0 - (objSize / 2));
+        if (hasSR)
+            newCollider.offset = new Vector2(0, 0);
+        else
+            newCollider.offset = new Vector2(objSize / 2, 0 - (objSize / 2));
         newCollider.isTrigger = isTrigger;
     }
 
@@ -128,13 +130,15 @@ public class CustomImporter_ssObject : ICustomTiledImporter
 
     void passTransformProperties(GameObject newObj, GameObject oldParent, float objSize, bool hasSR)
     {
+        Debug.Log("Float comparison unchecked!");
+
         newObj.transform.rotation = oldParent.transform.rotation;
         newObj.transform.position = oldParent.transform.position + oldParent.transform.GetChild(0).localPosition;
         if (!hasSR)
             newObj.transform.position += oldParent.transform.GetChild(0).GetChild(0).localPosition;
-        if (newObj.transform.rotation.z.ToString() == "0.7071068")
+        if (newObj.transform.rotation.z == 0.7071068F)
             newObj.transform.position += new Vector3(0 - objSize, 0 - objSize);
-        else if (newObj.transform.rotation.z.ToString() == "-0.7071068")
+        else if (newObj.transform.rotation.z == -0.7071068F)
             newObj.transform.position += new Vector3(objSize, 0 - objSize);
         else if (newObj.transform.rotation.z == 1 || newObj.transform.rotation.z == -1)
             newObj.transform.position += new Vector3(0, 0 - (objSize * 2));

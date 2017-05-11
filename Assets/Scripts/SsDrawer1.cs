@@ -1,36 +1,28 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class SsDrawer1 : SsObject
 {
     bool isClosed = true;
-    Mesh closedMesh = null;
-    //Mesh openMesh = null;
+    Sprite closedSprite = null;
+    public Sprite OpenSprite = null;
 
     public override void Interact()
     {
         if (isClosed)
-            open();
+        {
+            SR.sprite = OpenSprite;
+            Inventory.OwnItem("phaser");
+        }
         else
-            close();
+            SR.sprite = closedSprite;
         isClosed = !isClosed;
-    }
-
-    private void close()
-    {
-    }
-
-    private void open()
-    {
-        Inventory.OwnItem("phaser");
     }
 
     public override void Start()
     {
         base.Start();
-        closedMesh = meshFilter.sharedMesh;
-        //openMesh = (MeshFilter)
+        closedSprite = SR.sprite;
     }
 }

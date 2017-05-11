@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class SsObject : MonoBehaviour
 {
-    protected MeshRenderer meshRenderer;
-    protected MeshFilter meshFilter;
-    protected BoxCollider2D bc;
-    Material material;
+    protected MeshRenderer MR;
+    protected MeshFilter MF;
+    protected BoxCollider2D BC;
+    protected SpriteRenderer SR;
+    int sortingLayerID;
     bool bcIsTrigger;
 
     void OnCollisionEnter2D(Collision2D other)
@@ -57,25 +58,32 @@ public class SsObject : MonoBehaviour
     
     public void Hide()
     {
-        meshRenderer.material = null;
+        if (MR != null)
+            MR.sortingLayerName = null;
+        else
+            SR.sortingLayerName = null;
         if (!bcIsTrigger)
-            bc.isTrigger = true;
+            BC.isTrigger = true;
     }
 
     public void Show()
     {
-        meshRenderer.material = material;
+        if (MR != null)
+            MR.sortingLayerID = sortingLayerID;
+        else
+            SR.sortingLayerID = sortingLayerID;
         if (!bcIsTrigger)
-            bc.isTrigger = false;
+            BC.isTrigger = false;
     }
 
     public virtual void Start()
     {
-        bc = gameObject.GetComponent<BoxCollider2D>();
-        bcIsTrigger = bc.isTrigger;
-        meshRenderer = gameObject.GetComponent<MeshRenderer>();
-        meshFilter = gameObject.GetComponent<MeshFilter>();
-        material = meshRenderer.material;
+        BC = gameObject.GetComponent<BoxCollider2D>();
+        bcIsTrigger = BC.isTrigger;
+        MR = gameObject.GetComponent<MeshRenderer>();
+        MF = gameObject.GetComponent<MeshFilter>();
+        SR = gameObject.GetComponent<SpriteRenderer>();
+        sortingLayerID = (MR != null) ? MR.sortingLayerID : SR.sortingLayerID;
     }
 
     public virtual void Interact()
