@@ -8,20 +8,18 @@ public class Character : MonoBehaviour
     public float Speed;
     public enum Direction {None, Up, Right, Down, Left };
 
-    protected BoxCollider2D InteractionCollider = null;
-    protected GameObject Interactor = null;
+    protected GameObject InteractingWith = null;
     protected Rigidbody2D Rb2d = null;
+    protected const float StepLength = 0.24F;
 
     float startScaleX;
     Animator animator = null;
     Direction lastMovement = Direction.None;
-    const float stepDistance = 0.241F;
 
     protected virtual void Start()
     {
         Rb2d = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        InteractionCollider = gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>();
         startScaleX = transform.localScale.x;
     }
 
@@ -41,22 +39,6 @@ public class Character : MonoBehaviour
     {
     }
 
-    protected virtual void MoveOnInput()
-    {
-        Direction moveDirection = Direction.None;
-
-        if (Input.GetKey(KeyCode.RightArrow))
-            moveDirection = Direction.Right;
-        else if (Input.GetKey(KeyCode.LeftArrow))
-            moveDirection = Direction.Left;
-        else if (Input.GetKey(KeyCode.UpArrow))
-            moveDirection = Direction.Up;
-        else if (Input.GetKey(KeyCode.DownArrow))
-            moveDirection = Direction.Down;
-
-        Move(moveDirection);
-    }
-
     protected void Move(Direction direction)
     {
         if (direction != lastMovement)
@@ -69,16 +51,15 @@ public class Character : MonoBehaviour
         }
     }
 
-    protected void MovementActions(Direction direction)
+    protected virtual void MovementActions(Direction direction)
     {
         Vector3 dirVector = GetDirectionVector(direction);
         MovementActions(dirVector);
     }
 
-    protected void MovementActions(Vector3 dirVector)
+    protected virtual void MovementActions(Vector3 dirVector)
     {
         animate(dirVector);
-        rotateInteractionCollider(dirVector);
     }
 
     protected Vector3 GetDirectionVector(Direction direction)
@@ -102,14 +83,5 @@ public class Character : MonoBehaviour
 
         if (dirVector.x != 0)
             transform.localScale = new Vector3(startScaleX * dirVector.x, transform.localScale.y, transform.localScale.z);
-    }
-
-    private void rotateInteractionCollider(Vector3 dirVector)
-    {
-        if (InteractionCollider != null && dirVector.sqrMagnitude != 0)
-        {
-            int angle = dirVector.x != 0F ? (int)dirVector.x * 90 : (dirVector.y > 0F ? -180 : 0);
-            InteractionCollider.transform.rotation = Quaternion.Euler(0, 0, angle);
-        }
     }
 }

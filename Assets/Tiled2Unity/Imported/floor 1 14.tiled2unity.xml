@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <!--Tiled2Unity generated xml data-->
 <!--Do not modify by hand-->
-<!--Last exported: 5/12/2017 1:43:44 AM-->
+<!--Last exported: 5/12/2017 1:47:07 AM-->
 <Tiled2Unity version="1.0.11.1">
   <AssignMaterial mesh="mesh_0001" material="world" />
   <AssignMaterial mesh="mesh_0002" material="world" />
@@ -268,6 +268,7 @@
         </GameObject>
       </GameObject>
       <GameObject name="TileObject" x="5.75999975" y="-6.48" rotation="90" scaleX="1" scaleY="1">
+        <Property name="isLocked" value="false" />
         <Property name="name" value="SsDoor" />
         <TileObjectComponent tmx-object-id="75" tmx-object-name="" tmx-object-type="" tmx-object-x="576" tmx-object-y="648" tmx-object-width="24" tmx-object-height="24" tmx-object-rotation="90" tmx-tile-flip-horizontal="false" tmx-tile-flip-vertical="false" width="0.24" height="0.24" />
         <GameObject name="TileObject" x="0.12" y="0.12" scaleX="1" scaleY="1">

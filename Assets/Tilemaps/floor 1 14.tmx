@@ -129,6 +129,7 @@
   <object id="74" gid="122" x="744" y="672" width="24" height="24"/>
   <object id="75" gid="79" x="576" y="648" width="24" height="24" rotation="90">
    <properties>
+    <property name="isLocked" type="bool" value="false"/>
     <property name="name" value="SsDoor"/>
    </properties>
   </object>

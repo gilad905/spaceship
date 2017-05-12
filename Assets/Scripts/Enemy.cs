@@ -5,18 +5,7 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    public float StepLength = 1;
-
-    WalkRoute route = new WalkRoute()
-    {
-        Paths = new List<WalkPath>() {
-            new WalkPath(Direction.Left, 5),
-            new WalkPath(Direction.Up, 2),
-            new WalkPath(Direction.Right, 5),
-            new WalkPath(Direction.Down, 2),
-        },
-        IsLoop = true,
-    };
+    protected WalkRoute route = new WalkRoute();
 
     int currentPathIndex;
     int currentStep;
