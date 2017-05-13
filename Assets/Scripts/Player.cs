@@ -1,15 +1,40 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Character
 {
-    private BoxCollider2D interactionCollider = null;
+    public short Life;
+    private BoxCollider2D interactionCollider;
+
+    public void OnInteractionEnter(Collider2D collider)
+    {
+        if (collider.transform.parent == null || collider.transform.parent.name != "walls")
+            InteractingWith = collider.gameObject;
+    }
+
+    public void OnInteractionExit(Collider2D collider)
+    {
+        if (collider.transform.parent == null || collider.transform.parent.name != "walls")
+            InteractingWith = null;
+    }
+
+    public void OnHit()
+    {
+        tossBackwards();
+        godState();
+
+        Life--;
+        if (Life == 0)
+            die();
+    }
 
     protected override void Start()
     {
         base.Start();
         interactionCollider = gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>();
+        //startDrag = Rb2d.drag;
     }
 
     protected override void Update()
@@ -23,16 +48,10 @@ public class Player : Character
         moveOnInput();
     }
 
-    protected override void OnInteractionEnter(Collider2D collider)
+    protected override void UpdateAnimation()
     {
-        if (collider.transform.parent.name != "walls")
-            InteractingWith = collider.gameObject;
-    }
-
-    protected override void OnInteractionExit(Collider2D collider)
-    {
-        if (collider.transform.parent.name != "walls")
-            InteractingWith = null;
+        base.UpdateAnimation();
+        rotateInteractionCollider();
     }
 
     private void moveOnInput()
@@ -48,21 +67,31 @@ public class Player : Character
         else if (Input.GetKey(KeyCode.DownArrow))
             moveDirection = Direction.Down;
 
-        Move(moveDirection);
+        Walk(moveDirection);
     }
 
-    private void rotateInteractionCollider(Vector3 dirVector)
+    private void rotateInteractionCollider()
     {
-        if (interactionCollider != null && dirVector.sqrMagnitude != 0)
+        if (interactionCollider != null && HeadingVector.sqrMagnitude != 0)
         {
-            int angle = dirVector.x != 0F ? (int)dirVector.x * 90 : (dirVector.y > 0F ? -180 : 0);
+            int angle = HeadingVector.x != 0F ? (int)HeadingVector.x * 90 : (HeadingVector.y > 0F ? -180 : 0);
             interactionCollider.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
     }
 
-    protected override void MovementActions(Vector3 dirVector)
+    private void tossBackwards()
     {
-        base.MovementActions(dirVector);
-        rotateInteractionCollider(dirVector);
+        Vector3 tossVector = HeadingVector * -1;
+        StartCoroutine(MoveCR(tossVector, StepLength * 1.5F, Speed * 3, null));
+    }
+
+    private void godState()
+    {
+        
+    }
+
+    private void die()
+    {
+        throw new NotImplementedException();
     }
 }

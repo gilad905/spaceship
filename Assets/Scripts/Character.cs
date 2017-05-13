@@ -6,21 +6,39 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public float Speed;
-    public enum Direction {None, Up, Right, Down, Left };
+    public enum Direction { None, Up, Right, Down, Left };
 
     protected GameObject InteractingWith = null;
-    protected Rigidbody2D Rb2d = null;
+    protected Rigidbody2D Rb2d;
     protected const float StepLength = 0.24F;
+    protected delegate void moveEndedHandler();
+    protected bool Standing;
+    protected Direction Heading
+    {
+        get
+        {
+            return _heading;
+        }
+        set
+        {
+            _heading = value;
+            HeadingVector = GetDirectionVector(value);
+        }
+    }
+    protected Vector3 HeadingVector;
 
     float startScaleX;
-    Animator animator = null;
-    Direction lastMovement = Direction.None;
+    Animator animator;
+    Direction _heading;
+    bool inCollision = false;
 
     protected virtual void Start()
     {
         Rb2d = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
         startScaleX = transform.localScale.x;
+        Standing = true;
+        Heading = Direction.Down;
     }
 
     protected virtual void Update()
@@ -31,42 +49,62 @@ public class Character : MonoBehaviour
     {
     }
 
-    protected virtual void OnInteractionEnter(Collider2D collider)
+    protected void Walk(Direction direction)
     {
-    }
+        bool standingChanged = (Standing != (direction == Direction.None));
+        bool headingChanged = (direction != Direction.None && direction != Heading);
 
-    protected virtual void OnInteractionExit(Collider2D collider)
-    {
-    }
-
-    protected void Move(Direction direction)
-    {
-        if (direction != lastMovement)
+        if (standingChanged || headingChanged)
         {
-            lastMovement = direction;
+            if (standingChanged)
+                Standing = !Standing;
+            if (headingChanged)
+                Heading = direction;
+
             Vector3 dirVector = GetDirectionVector(direction);
-            Vector2 movement = new Vector2(dirVector.x, dirVector.y);
-            Rb2d.velocity = movement * Speed;
-            MovementActions(dirVector);
+            Rb2d.velocity = dirVector * Speed;
+            UpdateAnimation();
         }
     }
 
-    protected virtual void MovementActions(Direction direction)
-    {
-        Vector3 dirVector = GetDirectionVector(direction);
-        MovementActions(dirVector);
+    protected IEnumerator MoveCR(Vector3 dirVector, float distance, float speed, moveEndedHandler moveEndedHandler)
+    { 
+        float sqrRemainingDistance;
+
+        if (dirVector.sqrMagnitude == 0)
+            yield break;
+
+        Vector3 endPosition = transform.position + (dirVector * distance);
+
+        do
+        {
+            Vector2 updatePosition = Vector3.MoveTowards(Rb2d.position, endPosition, speed * Time.deltaTime);
+            Rb2d.MovePosition(updatePosition);
+            sqrRemainingDistance = (transform.position - endPosition).sqrMagnitude;
+
+            yield return null;
+        }
+        while (!inCollision && sqrRemainingDistance > float.Epsilon);
+
+        if (moveEndedHandler != null)
+            moveEndedHandler();
     }
 
-    protected virtual void MovementActions(Vector3 dirVector)
+    protected virtual void UpdateAnimation()
     {
-        animate(dirVector);
+        animator.SetInteger("moveX", (Standing ? 0 : (int)HeadingVector.x));
+        animator.SetInteger("moveY", (Standing ? 0 : (int)HeadingVector.y));
+        animator.SetBool("standing", Standing);
+
+        if (HeadingVector.x != 0)
+            transform.localScale = new Vector3(startScaleX * HeadingVector.x, transform.localScale.y, transform.localScale.z);
     }
 
     protected Vector3 GetDirectionVector(Direction direction)
     {
-        #pragma warning disable IDE0017 // Simplify object initialization
+#pragma warning disable IDE0017 // Simplify object initialization
         Vector3 result = new Vector3();
-        #pragma warning restore IDE0017 // Simplify object initialization
+#pragma warning restore IDE0017 // Simplify object initialization
 
         result.x = (direction == Direction.Right ? 1 : (direction == Direction.Left ? -1 : 0));
         if (result.x == 0)
@@ -75,13 +113,13 @@ public class Character : MonoBehaviour
         return result;
     }
 
-    private void animate(Vector3 dirVector)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        animator.SetInteger("moveX", (int)dirVector.x);
-        animator.SetInteger("moveY", (int)dirVector.y);
-        animator.SetBool("idle", dirVector.sqrMagnitude == 0);
+        inCollision = true;
+    }
 
-        if (dirVector.x != 0)
-            transform.localScale = new Vector3(startScaleX * dirVector.x, transform.localScale.y, transform.localScale.z);
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        inCollision = false;
     }
 }

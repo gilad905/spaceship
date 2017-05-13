@@ -3,12 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class InteractionCollider : MonoBehaviour {
+    Player parentCtrl = null;
+
+    private void Start()
+    {
+        parentCtrl = gameObject.GetComponentInParent<Player>();
+    }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
-        gameObject.transform.parent.SendMessage("OnInteractionEnter", other);
+        if (parentCtrl != null)
+            parentCtrl.OnInteractionEnter(other);
     }
+
     private void OnTriggerExit2D(Collider2D other)
     {
-        gameObject.transform.parent.SendMessage("OnInteractionExit", other);
+        if (parentCtrl != null)
+            parentCtrl.OnInteractionExit(other);
     }
 }

@@ -7,13 +7,14 @@ public class Enemy1 : Enemy
 {
     protected override void Start()
     {
-        route.Paths = new List<WalkPath>() {
+        Route.Paths = new List<WalkPath>() {
+            //new WalkPath(Direction.Up, 5),
             new WalkPath(Direction.Left, 5),
             new WalkPath(Direction.Up, 2),
             new WalkPath(Direction.Right, 5),
             new WalkPath(Direction.Down, 2),
         };
-        route.IsLoop = true;
+        Route.IsLoop = true;
         base.Start();
     }
 }

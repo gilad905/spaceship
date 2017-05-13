@@ -5,28 +5,18 @@ using UnityEngine;
 
 public class Enemy : Character
 {
-    protected WalkRoute route = new WalkRoute();
-
     int currentPathIndex;
     int currentStep;
     float inverseMoveTime;
+    static GameObject player = null;
+    static Player playerCtrl = null;
+    event moveEndedHandler moveStepEnded;
 
-    delegate void moveStepEndedHandler();
-    event moveStepEndedHandler moveStepEnded;
+    protected WalkRoute Route = new WalkRoute();
 
-    protected override void Start()
+    private void walkOnRoute()
     {
-        base.Start();
-
-        inverseMoveTime = Speed / StepLength;
-        moveStepEnded += nextStep;
-
-        moveOnRoute();
-    }
-
-    private void moveOnRoute()
-    {
-        if (StepLength <= float.Epsilon || route.Paths.Count == 0)
+        if (StepLength <= float.Epsilon || Route.Paths.Count == 0)
             return;
 
         currentPathIndex = 0;
@@ -36,21 +26,25 @@ public class Enemy : Character
 
     private void nextStep()
     {
-        if (currentPathIndex == route.Paths.Count)
+        if (currentPathIndex == Route.Paths.Count)
         {
-            if (route.IsLoop)
+            if (Route.IsLoop)
                 currentPathIndex = 0;
             else
             {
-                MovementActions(Direction.None);
+                Standing = true;
+                UpdateAnimation();
                 return;
             }
         }
 
-        WalkPath currentPath = route.Paths[currentPathIndex];
+        WalkPath currentPath = Route.Paths[currentPathIndex];
         Vector3 curDirVector = GetDirectionVector(currentPath.Direction);
 
-        StartCoroutine(moveStep(curDirVector));
+        StartCoroutine(MoveCR(curDirVector, StepLength, inverseMoveTime, moveStepEnded));
+        Standing = false;
+        Heading = currentPath.Direction;
+        UpdateAnimation();
 
         currentStep++;
         if (currentStep == currentPath.Amount)
@@ -60,28 +54,22 @@ public class Enemy : Character
         }
     }
 
-    protected IEnumerator moveStep(Vector3 dirVector)
+    protected override void Start()
     {
-        float sqrRemainingDistance;
+        base.Start();
 
-        if (dirVector.sqrMagnitude == 0)
-            yield break;
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerCtrl = player.GetComponent<Player>();
 
-        Vector3 endPosition = transform.position + (dirVector * StepLength);
+        inverseMoveTime = Speed / StepLength;
+        moveStepEnded += nextStep;
 
-        MovementActions(dirVector);
+        walkOnRoute();
+    }
 
-        do
-        {
-            Vector3 newPostion = Vector3.MoveTowards(Rb2d.position, endPosition, inverseMoveTime * Time.deltaTime);
-            Rb2d.MovePosition(newPostion);
-
-            sqrRemainingDistance = (transform.position - endPosition).sqrMagnitude;
-
-            yield return null;
-        }
-        while (sqrRemainingDistance > float.Epsilon);
-
-        moveStepEnded();
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject == player)
+            playerCtrl.OnHit();
     }
 }

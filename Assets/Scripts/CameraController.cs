@@ -13,7 +13,10 @@ public class CameraController : MonoBehaviour
 
     void stickToPlayerPosition()
     {
-        var playerPos = Player.transform.position;
-        transform.position = new Vector3(playerPos.x, playerPos.y, transform.position.z);
+        if (Player != null)
+        {
+            var playerPos = Player.transform.position;
+            transform.position = new Vector3(playerPos.x, playerPos.y, transform.position.z);
+        }
     }
 }
