@@ -8,9 +8,10 @@ public class Enemy1 : Enemy
     protected override void Start()
     {
         Route.Paths = new List<WalkPath>() {
-            //new WalkPath(Direction.Up, 5),
+            new WalkPath(Direction.None, 3),
             new WalkPath(Direction.Left, 5),
             new WalkPath(Direction.Up, 2),
+            new WalkPath(Direction.None, 3),
             new WalkPath(Direction.Right, 5),
             new WalkPath(Direction.Down, 2),
         };

@@ -13,7 +13,7 @@ public class SsDrawer1 : SsObject
         if (isClosed)
         {
             SR.sprite = OpenSprite;
-            Inventory.OwnItem("phaser");
+            Inventory.OwnItem("Phaser");
         }
         else
             SR.sprite = closedSprite;

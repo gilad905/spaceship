@@ -14,7 +14,7 @@ public class SsDoor : SsObject {
 
     public override void CollideEnter(GameObject other)
     {
-        if (!isLocked && other.name == "Player")
+        if (!isLocked && other.tag == "Player")
         {
             isClosed = false;
             Hide();

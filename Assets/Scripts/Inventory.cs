@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class Inventory {
-    static readonly List<SsItem> items = new List<SsItem>()
-    {
-        new SsItem() { Name = "phaser" }
-    };
-
+public class Inventory : MonoBehaviour {
     public static List<SsItem> ownedItems = new List<SsItem>();
+    public static GameObject Items;
+
+    static List<SsItem> items = null;
+    static SsItem currentItem = null;
+
+    private void Start()
+    {
+        Items itemsCtrl = gameObject.GetComponent<Items>();
+        items = itemsCtrl.items;
+    }
 
     public static bool OwnItem(string itemName)
     {
@@ -22,6 +27,8 @@ public static class Inventory {
             else
             {
                 ownedItems.Add(item);
+                if (ownedItems.Count == 1)
+                    currentItem = item;
                 return true;
             }
         }
@@ -42,5 +49,15 @@ public static class Inventory {
             else
                 return false;
         }
+    }
+
+    public static bool UseCurrentItem()
+    {
+        if (currentItem != null)
+        {
+            currentItem.Use();
+            return true;
+        }
+        return false;
     }
 }

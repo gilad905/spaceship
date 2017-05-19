@@ -15,7 +15,7 @@ public class CustomImporter_ssObject : ICustomTiledImporter
     public CustomImporter_ssObject()
     {
         this.objects = new GameObject("Objects_temp");
-        this.objects.transform.position = new Vector3(0, 0, 0);
+        this.objects.transform.position = Vector3.zero;
 
         GameObject objects = GameObject.Find("Objects");
         if (objects != null)
@@ -106,7 +106,7 @@ public class CustomImporter_ssObject : ICustomTiledImporter
         BoxCollider2D newCollider = newObj.GetComponent<BoxCollider2D>();
         newCollider.size = new Vector2(objSize, objSize);
         if (hasSR)
-            newCollider.offset = new Vector2(0, 0);
+            newCollider.offset = Vector2.zero;
         else
             newCollider.offset = new Vector2(objSize / 2, 0 - (objSize / 2));
         newCollider.isTrigger = isTrigger;

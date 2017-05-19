@@ -5,8 +5,8 @@ using UnityEngine;
 
 public class Player : Character
 {
-    public short Life;
     private BoxCollider2D interactionCollider;
+    bool inGodState = false;
 
     public void OnInteractionEnter(Collider2D collider)
     {
@@ -20,32 +20,43 @@ public class Player : Character
             InteractingWith = null;
     }
 
-    public void OnHit()
+    public override void OnHit()
     {
-        tossBackwards();
-        godState();
-
-        Life--;
-        if (Life == 0)
-            die();
+        if (!inGodState)
+        {
+            base.OnHit();
+            startGodState();
+            tossBackwards();
+        }
     }
 
     protected override void Start()
     {
         base.Start();
         interactionCollider = gameObject.transform.GetChild(0).GetComponent<BoxCollider2D>();
-        //startDrag = Rb2d.drag;
     }
 
     protected override void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && InteractingWith != null)
-            InteractingWith.SendMessage("Interact");
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (InteractingWith != null)
+                InteractingWith.SendMessage("Interact");
+            else
+                Inventory.UseCurrentItem();
+        }
     }
 
     protected override void FixedUpdate()
     {
-        moveOnInput();
+        if (!IsMoved)
+            walkOnInput();
+    }
+
+    protected override void Die()
+    {
+        base.Die();
+        Debug.Log("Game Over, Man!");
     }
 
     protected override void UpdateAnimation()
@@ -54,7 +65,20 @@ public class Player : Character
         rotateInteractionCollider();
     }
 
-    private void moveOnInput()
+    private void startGodState()
+    {
+        inGodState = true;
+        Animator.SetBool("godState", true);
+        StartCoroutine(Timer(1, godStateEnded));
+    }
+
+    private void godStateEnded()
+    {
+        inGodState = false;
+        Animator.SetBool("godState", false);
+    }
+
+    private void walkOnInput()
     {
         Direction moveDirection = Direction.None;
 
@@ -82,16 +106,6 @@ public class Player : Character
     private void tossBackwards()
     {
         Vector3 tossVector = HeadingVector * -1;
-        StartCoroutine(MoveCR(tossVector, StepLength * 1.5F, Speed * 3, null));
-    }
-
-    private void godState()
-    {
-        
-    }
-
-    private void die()
-    {
-        throw new NotImplementedException();
+        MoveTime(tossVector, 0.2F, Speed * 3);
     }
 }

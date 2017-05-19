@@ -84,7 +84,9 @@
     <Compile Include="Assets\Scripts\Enemy1.cs" />
     <Compile Include="Assets\Scripts\InteractionCollider.cs" />
     <Compile Include="Assets\Scripts\Inventory.cs" />
+    <Compile Include="Assets\Scripts\Items.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\ShotCtrl.cs" />
     <Compile Include="Assets\Scripts\SsDoor.cs" />
     <Compile Include="Assets\Scripts\SsDrawer1.cs" />
     <Compile Include="Assets\Scripts\SsItem.cs" />

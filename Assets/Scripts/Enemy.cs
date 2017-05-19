@@ -7,12 +7,26 @@ public class Enemy : Character
 {
     int currentPathIndex;
     int currentStep;
-    float inverseMoveTime;
     static GameObject player = null;
     static Player playerCtrl = null;
-    event moveEndedHandler moveStepEnded;
 
     protected WalkRoute Route = new WalkRoute();
+
+    protected override void Start()
+    {
+        base.Start();
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        playerCtrl = player.GetComponent<Player>();
+
+        walkOnRoute();
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject == player)
+            playerCtrl.OnHit();
+    }
 
     private void walkOnRoute()
     {
@@ -32,19 +46,19 @@ public class Enemy : Character
                 currentPathIndex = 0;
             else
             {
-                Standing = true;
-                UpdateAnimation();
+                Walk(Direction.None);
                 return;
             }
         }
 
         WalkPath currentPath = Route.Paths[currentPathIndex];
-        Vector3 curDirVector = GetDirectionVector(currentPath.Direction);
-
-        StartCoroutine(MoveCR(curDirVector, StepLength, inverseMoveTime, moveStepEnded));
-        Standing = false;
-        Heading = currentPath.Direction;
-        UpdateAnimation();
+        if (currentPath.Direction == Direction.None)
+        {
+            Walk(Direction.None);
+            StartCoroutine(Timer(1, nextStep));
+        }
+        else
+            WalkCR(currentPath.Direction, StepLength, Speed, nextStep);
 
         currentStep++;
         if (currentStep == currentPath.Amount)
@@ -54,22 +68,8 @@ public class Enemy : Character
         }
     }
 
-    protected override void Start()
+    protected override void Die()
     {
-        base.Start();
-
-        player = GameObject.FindGameObjectWithTag("Player");
-        playerCtrl = player.GetComponent<Player>();
-
-        inverseMoveTime = Speed / StepLength;
-        moveStepEnded += nextStep;
-
-        walkOnRoute();
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject == player)
-            playerCtrl.OnHit();
+        Destroy(gameObject);
     }
 }
