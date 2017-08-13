@@ -13,6 +13,7 @@ public class Inventory : MonoBehaviour {
     {
         Items itemsCtrl = gameObject.GetComponent<Items>();
         items = itemsCtrl.items;
+        OwnItem("Phaser");
     }
 
     public static bool OwnItem(string itemName)

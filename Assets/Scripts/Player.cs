@@ -40,11 +40,27 @@ public class Player : Character
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (InteractingWith != null)
-                InteractingWith.SendMessage("Interact");
-            else
+            if (!Interact())
                 Inventory.UseCurrentItem();
         }
+    }
+
+    private bool Interact()
+    {
+        if (InteractingWith != null)
+        {
+            SsObject interactorCtrl = InteractingWith.GetComponent<SsObject>();
+            if (interactorCtrl != null)
+            {
+                interactorCtrl.Interact();
+                return true;
+            }
+            else
+                return false;
+            //InteractingWith.SendMessage("Interact", SendMessageOptions.DontRequireReceiver);
+        }
+        else
+            return false;
     }
 
     protected override void FixedUpdate()
@@ -55,7 +71,6 @@ public class Player : Character
 
     protected override void Die()
     {
-        base.Die();
         Debug.Log("Game Over, Man!");
     }
 

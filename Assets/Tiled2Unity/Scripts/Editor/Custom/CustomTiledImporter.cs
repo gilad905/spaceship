@@ -10,7 +10,8 @@ public class CustomImporter_ssObject : ICustomTiledImporter
 {
     static Dictionary<string, int> names;
     GameObject objects;
-    float objSize = 0.24F;
+
+    float objSize = 1.2F;
 
     public CustomImporter_ssObject()
     {
@@ -56,14 +57,6 @@ public class CustomImporter_ssObject : ICustomTiledImporter
         for (int i = 0; i < children.Count; i++)
             children[i].SetSiblingIndex(i);
     }
-
-    //private void ClearChildren(GameObject parent)
-    //{
-    //    var children = new List<GameObject>();
-    //    foreach (Transform child in parent.transform)
-    //        children.Add(child.gameObject);
-    //    children.ForEach(child => GameObject.DestroyImmediate(child));
-    //}
 
     void instantiateTile(GameObject oldObj)
     {

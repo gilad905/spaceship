@@ -17,10 +17,11 @@ public class SsDrawer1 : SsObject
         }
         else
             SR.sprite = closedSprite;
+
         isClosed = !isClosed;
     }
 
-    public override void Start()
+    protected override void Start()
     {
         base.Start();
         closedSprite = SR.sprite;

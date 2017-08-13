@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Character : MonoBehaviour
@@ -8,13 +7,14 @@ public class Character : MonoBehaviour
     public float Speed;
     public enum Direction { None, Up, Right, Down, Left };
     public short Life;
-    public GameObject Shot;
+    private GameObject shotInstance;
 
     protected delegate void simpleFunc();
     protected GameObject InteractingWith = null;
     protected Rigidbody2D Rb2d;
     protected Animator Animator;
     protected BoxCollider2D Collider;
+    protected Vector3 HeadingVector;
     protected Direction Heading
     {
         get
@@ -27,10 +27,10 @@ public class Character : MonoBehaviour
             HeadingVector = GetDirectionVector(value);
         }
     }
-    protected Vector3 HeadingVector;
-    protected const float StepLength = 0.24F;
+    protected const float StepLength = 1.2F;
     protected bool Standing { get; private set; }
     protected bool IsMoved;
+    protected float ColliderHalfSize;
 
     float startScaleX;
     Direction _heading;
@@ -44,12 +44,12 @@ public class Character : MonoBehaviour
 
         startScaleX = transform.localScale.x;
         inCollision = false;
+        shotInstance = GameObject.FindGameObjectWithTag("Shot");
 
         Standing = true;
         IsMoved = false;
         Heading = Direction.Down;
-
-        Inventory.OwnItem("Phaser");
+        ColliderHalfSize = Math.Max(Collider.size.x, Collider.size.y) / 2;
     }
 
     protected virtual void Update()
@@ -149,19 +149,10 @@ public class Character : MonoBehaviour
     }
 
 
+
     /*** Others ***/
 
-    protected virtual void UpdateAnimation()
-    {
-        Animator.SetInteger("moveX", (Standing ? 0 : (int)HeadingVector.x));
-        Animator.SetInteger("moveY", (Standing ? 0 : (int)HeadingVector.y));
-        Animator.SetBool("standing", Standing);
-
-        if (HeadingVector.x != 0)
-            transform.localScale = new Vector3(startScaleX * HeadingVector.x, transform.localScale.y, transform.localScale.z);
-    }
-
-    protected Vector3 GetDirectionVector(Direction direction)
+    protected static Vector3 GetDirectionVector(Direction direction)
     {
         #pragma warning disable IDE0017 // Simplify object initialization
         Vector3 result = new Vector3();
@@ -172,6 +163,16 @@ public class Character : MonoBehaviour
             result.y = (direction == Direction.Up ? 1 : (direction == Direction.Down ? -1 : 0));
 
         return result;
+    }
+
+    protected virtual void UpdateAnimation()
+    {
+        Animator.SetInteger("moveX", (Standing ? 0 : (int)HeadingVector.x));
+        Animator.SetInteger("moveY", (Standing ? 0 : (int)HeadingVector.y));
+        Animator.SetBool("standing", Standing);
+
+        if (HeadingVector.x != 0)
+            transform.localScale = new Vector3(startScaleX * HeadingVector.x, transform.localScale.y, transform.localScale.z);
     }
 
     protected IEnumerator Timer(float duration, simpleFunc atEnd)
@@ -193,11 +194,19 @@ public class Character : MonoBehaviour
 
     internal void Shoot()
     {
-        Vector3 shotPosition = gameObject.transform.position + (HeadingVector * (Collider.size.x + ShotCtrl.Collider.size.x) / 2);
-        Quaternion headingRotation = Quaternion.FromToRotation(gameObject.transform.position, shotPosition);
-        //Quaternion headingRotation = Quaternion.LookRotation(Vector3.zero, HeadingVector);
-        GameObject shot = Instantiate(Shot, shotPosition, headingRotation);
+        Shot shotCtrl = (Shot)shotInstance.GetComponent<Shot>();
+        Vector3 shotStart = transform.position + (HeadingVector * (ColliderHalfSize + shotCtrl.ColliderHalfSize));
+        GameObject shot = Instantiate(shotInstance);
+
+        shot.transform.position = shotStart;
+        shot.transform.rotation = rotationFromDirection(HeadingVector - Vector3.zero);
         Rigidbody2D shotRb2d = shot.GetComponent<Rigidbody2D>();
-        shotRb2d.velocity = HeadingVector * ShotCtrl.Speed;
+        shotRb2d.velocity = HeadingVector * Shot.Speed;
+    }
+
+    private Quaternion rotationFromDirection(Vector3 direction)
+    {
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        return Quaternion.AngleAxis(angle, Vector3.forward);
     }
 }

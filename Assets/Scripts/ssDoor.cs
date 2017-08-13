@@ -3,8 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class SsDoor : SsObject {
-    public bool isLocked = true;
+    public bool isLocked;
     bool isClosed = true;
+
+    protected override void Start()
+    {
+        base.Start();
+        if (BC != null)
+            BC.isTrigger = !isLocked;
+    }
 
     public override void SetProperties(IDictionary<string, string> props)
     {
@@ -28,5 +35,19 @@ public class SsDoor : SsObject {
             isClosed = true;
             Show();
         }
+    }
+
+    public void Lock()
+    {
+        isLocked = true;
+        if (BC != null)
+            BC.isTrigger = false;
+    }
+
+    public void Unlock()
+    {
+        isLocked = false;
+        if (BC != null)
+            BC.isTrigger = true;
     }
 }

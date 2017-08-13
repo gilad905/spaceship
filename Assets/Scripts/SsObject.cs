@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SsObject : MonoBehaviour
+public class SsObject : MonoBehaviour, IInteractable
 {
     protected MeshRenderer MR;
     protected MeshFilter MF;
     protected BoxCollider2D BC;
     protected SpriteRenderer SR;
-    int sortingLayerID;
-    bool bcIsTrigger;
 
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -59,31 +57,25 @@ public class SsObject : MonoBehaviour
     public void Hide()
     {
         if (MR != null)
-            MR.sortingLayerName = null;
+            MR.enabled = false;
         else
-            SR.sortingLayerName = null;
-        if (!bcIsTrigger)
-            BC.isTrigger = true;
+            SR.enabled = false;
     }
 
     public void Show()
     {
         if (MR != null)
-            MR.sortingLayerID = sortingLayerID;
+            MR.enabled = true;
         else
-            SR.sortingLayerID = sortingLayerID;
-        if (!bcIsTrigger)
-            BC.isTrigger = false;
+            SR.enabled = true;
     }
 
-    public virtual void Start()
+    protected virtual void Start()
     {
         BC = gameObject.GetComponent<BoxCollider2D>();
-        bcIsTrigger = BC.isTrigger;
         MR = gameObject.GetComponent<MeshRenderer>();
         MF = gameObject.GetComponent<MeshFilter>();
         SR = gameObject.GetComponent<SpriteRenderer>();
-        sortingLayerID = (MR != null) ? MR.sortingLayerID : SR.sortingLayerID;
     }
 
     public virtual void Interact()
