@@ -100,8 +100,8 @@ public class Enemy : Character
                 }
                 else if (hit.transform.tag == "Interaction Collider")
                     continue;
-                else
-                    break;
+
+                break;
             }
         }
     }

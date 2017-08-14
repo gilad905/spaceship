@@ -75,8 +75,7 @@ public class Character : MonoBehaviour
             if (headingChanged)
                 Heading = direction;
 
-            Vector3 dirVector = GetDirectionVector(direction);
-            Rb2d.velocity = dirVector * Speed;
+            Rb2d.velocity = HeadingVector * Speed;
             UpdateAnimation();
         }
     }
